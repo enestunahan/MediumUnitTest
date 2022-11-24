@@ -7,6 +7,10 @@ namespace MediumUnitTest.Library
     {
         public LetterGrade EvaluatePaper(AnswerPaper answer)
         {
+            if (string.IsNullOrEmpty(answer.Student.FirstName))
+                return LetterGrade.FF;
+            
+                
             return LetterGrade.AA;
         }
     }
