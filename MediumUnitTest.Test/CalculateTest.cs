@@ -61,6 +61,8 @@ namespace MediumUnitTest.Test
             var testResult = _calculate.EvaluatePaper(answerPaper);
 
             Assert.Equal(LetterGrade.BB,testResult);
+
+            _mock.Verify(x => x.IsValid(answerPaper.Student.FullName), Times.Once);
         }
 
     }
