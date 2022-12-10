@@ -65,5 +65,22 @@ namespace MediumUnitTest.Test
             _mock.Verify(x => x.IsValid(answerPaper.Student.FullName), Times.Once);
         }
 
+        [Fact]
+        public void EvaulatePaper_FullNameLengthLessThanFive_ReturnsException()
+        {
+            var answerPaper = new AnswerPaper
+            {
+                Student = new Student { FirstName = "e", LastName = "bb" }
+            };
+
+            _mock.Setup(x => x.IsValid(answerPaper.Student.FullName)).Throws(new Exception("FullName alanı 5 karakterden fazla olmalıdır"));
+
+            Exception exception = Assert.Throws<Exception>(()=> _calculate.EvaluatePaper(answerPaper));
+
+            Assert.Equal("FullName alanı 5 karakterden fazla olmalıdır", exception.Message);
+        }
+
+
+
     }
 }
